@@ -1,0 +1,15 @@
+"D:\iar\arm\bin\armPROC.dll" 
+
+"D:\iar\arm\bin\armSTLINK.dll" 
+
+"C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\2026_Electric_Design_Main\Exe\2026_Electric_Design_Main.out" 
+
+--plugin="D:\iar\arm\bin\armbat.dll" 
+
+--device_macro="D:\iar\arm/config/debugger/ST/STM32G4xx.dmac" 
+
+--flash_loader="D:\iar\arm/config/flashloader/ST/FlashSTM32G47xxx.board" 
+
+
+
+

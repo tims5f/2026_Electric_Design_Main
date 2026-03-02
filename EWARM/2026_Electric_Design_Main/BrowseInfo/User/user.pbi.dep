@@ -1,0 +1,44 @@
+C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\2026_Electric_Design_Main\BrowseInfo\User\user.pbi: \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\User\user.c \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\User\user.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Core\Inc\gpio.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Core\Inc\main.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Core\Inc\stm32g4xx_hal_conf.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_def.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\CMSIS\Device\ST\STM32G4xx\Include\stm32g4xx.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\CMSIS\Device\ST\STM32G4xx\Include\stm32g474xx.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\CMSIS\Include\core_cm4.h \
+  D:\iar\arm\inc\c\stdint.h D:\iar\arm\inc\c\ycheck.h \
+  D:\iar\arm\inc\c\yvals.h D:\iar\arm\inc\c\DLib_Defaults.h \
+  D:\iar\arm\inc\c\DLib_Config_Full.h D:\iar\arm\inc\c\DLib_Product.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\CMSIS\Include\cmsis_version.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\CMSIS\Include\cmsis_compiler.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\CMSIS\Include\cmsis_iccarm.h \
+  D:\iar\arm\inc\c\aarch32\iccarm_builtin.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\CMSIS\Include\mpu_armv7.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\CMSIS\Device\ST\STM32G4xx\Include\system_stm32g4xx.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
+  D:\iar\arm\inc\c\stddef.h D:\iar\arm\inc\c\ysizet.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc_ex.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_gpio.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_gpio_ex.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_dma.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_dma_ex.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_cortex.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_adc.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_ll_adc.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_adc_ex.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_exti.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_flash.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_flash_ex.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_flash_ramfunc.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_i2c.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_i2c_ex.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_pwr.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_pwr_ex.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim_ex.h \
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\User\oled\oled.h \
+  D:\iar\arm\inc\c\stdlib.h D:\iar\arm\inc\c\DLib_Product_stdlib.h
