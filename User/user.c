@@ -11,7 +11,7 @@
 频率2
 蜂鸣档
 电阻档4个  200 2k 20k 200k*/
-
+// v_mode == 0 20V档
 void Mode_show()
 {
   OLED_Clear();

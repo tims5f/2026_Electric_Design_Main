@@ -26,6 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "user.h"
+#include "adc.h"
+#include "oled.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,6 +53,7 @@ uint8_t current_key;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId KeyHandle;
+osThreadId Data_FuctionHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -59,6 +62,7 @@ osThreadId KeyHandle;
 
 void StartDefaultTask(void const * argument);
 void Key_Scan(void const * argument);
+void Data(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -96,6 +100,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of Key */
   osThreadDef(Key, Key_Scan, osPriorityIdle, 0, 128);
   KeyHandle = osThreadCreate(osThread(Key), NULL);
+
+  /* definition and creation of Data_Fuction */
+  osThreadDef(Data_Fuction, Data, osPriorityIdle, 0, 128);
+  Data_FuctionHandle = osThreadCreate(osThread(Data_Fuction), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -228,6 +236,38 @@ void Key_Scan(void const * argument)
     osDelay(1);
   }
   /* USER CODE END Key_Scan */
+}
+
+/* USER CODE BEGIN Header_Data */
+/**
+* @brief Function implementing the Data_Fuction thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_Data */
+void Data(void const * argument)
+{
+  /* USER CODE BEGIN Data */
+  /* Infinite loop */
+  for(;;)
+  {
+    if(mode == 1||mode == 2||mode == 5){
+      if(v_mode == 0){
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,1);//20V档
+        HAL_ADC_Start_DMA(&hadc1, &v20, 1);//20V
+        v20_true = (float)v20 * 40.0f / 4096.0f - 20.0f;
+        show_one_decimal(90,50,v20_true,12);
+      }
+      if(v_mode == 1){
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,0);//2V档
+        HAL_ADC_Start_DMA(&hadc2, &v2, 1);//2V
+        v2_true = (float)v2 * 4.0f / 4096.0f - 2.0f;
+        show_one_decimal(90,50,v2_true,12);
+      }
+    }
+    osDelay(1);
+  }
+  /* USER CODE END Data */
 }
 
 /* Private application code --------------------------------------------------*/

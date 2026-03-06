@@ -2,6 +2,9 @@
 #include "oledfont.h"
 #include "stdlib.h" 
 #include "i2c.h"
+#include "stdio.h"
+#include <stdlib.h>
+
 //#include "stm32f4xx_hal.h"
 unsigned char OLED_GRAM[128][8];
 unsigned char freq[5] = {70,114,101,113,58};
@@ -341,11 +344,23 @@ void OLED_Init(void)
 //  }
 //}
 
-//void show_one_decimal(unsigned char x, unsigned char y,float value,  unsigned char size) {
-//    char buffer[16];  // 缓冲区存储格式化后的字符串
-//    sprintf(buffer, "%.1f", value);  // 格式化为一位小数（自动四舍五入）
-//    OLED_ShowString(x, y, (unsigned char*)buffer, size);  // 强制类型转换
-//}
+
+void show_one_decimal(unsigned char x,
+                      unsigned char y,
+                      float value,
+                      unsigned char size)
+{
+    char buffer[16];
+
+    int temp = (int)(value * 10);     // 放大10倍
+    int integer = temp / 10;          // 整数部分（自动带符号）
+    int decimal = abs(temp % 10);     // 小数部分取绝对值
+
+    sprintf(buffer, "%d.%d", integer, decimal);
+
+    OLED_ShowString(x, y, (unsigned char*)buffer, size);
+    OLED_Refresh_Gram();
+}
 //
 //void show_data(int key){
 //  switch (key)

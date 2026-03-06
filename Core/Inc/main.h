@@ -44,6 +44,14 @@ extern "C" {
 extern uint8_t mode;
 extern uint8_t v_mode;
 extern uint8_t r_mode;
+
+
+extern uint32_t v2;
+extern float v2_true;
+
+
+extern uint32_t v20;
+extern float v20_true;
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/

@@ -51,10 +51,13 @@
 uint8_t mode = 0;
 uint8_t v_mode = 0;
 uint8_t r_mode = 0;
-uint32_t v1 = 0;
+
+uint32_t v20 = 0;
+float v20_true = 0;
+
 float v2_true = 0;
-float v1_true = 0;
 uint32_t v2 = 0;
+uint8_t start = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -106,22 +109,29 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   
-  //OLED_Init();
+  while(!start){
+    start = HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_1);
+  }
+  
+  OLED_Init();
 
-  //OLED_Clear();
-  //OLED_ColorTurn(1);
-  //Mode_show();
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,1);
+  OLED_Clear();
+  OLED_ColorTurn(1);
+  Mode_show();
+
+
+  HAL_Delay(100);
+  //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,1); // 切换成20V档
 
 
 
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
-  //MX_FREERTOS_Init();
+  MX_FREERTOS_Init();
 
   /* Start scheduler */
-  //osKernelStart();
+  osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 
@@ -129,10 +139,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_ADC_Start_DMA(&hadc1, &v1, 1);
-    v1_true = (float)v1 * 40.0f / 4096.0f - 20.0f;
-    HAL_ADC_Start_DMA(&hadc2, &v2, 1);
-    v2_true = (float)v2 * 4.0f / 4096.0f - 2.0f;
+    
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

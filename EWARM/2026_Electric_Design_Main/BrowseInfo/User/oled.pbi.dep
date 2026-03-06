@@ -42,4 +42,5 @@ C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\2026_Electric_Design_Main
   C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_pwr.h \
   C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_pwr_ex.h \
   C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim.h \
-  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim_ex.h
+  C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim_ex.h \
+  D:\iar\arm\inc\c\stdio.h
