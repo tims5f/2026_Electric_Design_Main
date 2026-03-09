@@ -54,9 +54,11 @@ uint8_t r_mode = 0;
 
 uint32_t v20 = 0;
 float v20_true = 0;
+uint32_t v20_sum = 0;
 
 float v2_true = 0;
 uint32_t v2 = 0;
+uint32_t v2_sum = 0;
 uint8_t start = 0;
 /* USER CODE END PV */
 

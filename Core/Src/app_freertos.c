@@ -45,6 +45,8 @@
 uint32_t key_time = 0;
 KeyState_t key_state = KEY_IDLE;
 uint8_t current_key;
+uint32_t e = 0;
+uint32_t y = 0;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -248,21 +250,37 @@ void Key_Scan(void const * argument)
 void Data(void const * argument)
 {
   /* USER CODE BEGIN Data */
+  
   /* Infinite loop */
   for(;;)
   {
     if(mode == 1||mode == 2||mode == 5){
       if(v_mode == 0){
+        
         HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,1);//20V档
         HAL_ADC_Start_DMA(&hadc1, &v20, 1);//20V
-        v20_true = (float)v20 * 40.0f / 4096.0f - 20.0f;
-        show_one_decimal(90,50,v20_true,12);
+        v20_sum += v20;
+        e++;
+        if(e >= 999){
+          v20 = v20_sum / 1000;
+          e = 0;
+          v20_sum = 0;
+          v20_true = (float)v20 * 40.0f / 4096.0f - 20.0f;
+          show_one_decimal(90,50,v20_true,12);
+        }
       }
       if(v_mode == 1){
         HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,0);//2V档
         HAL_ADC_Start_DMA(&hadc2, &v2, 1);//2V
-        v2_true = (float)v2 * 4.0f / 4096.0f - 2.0f;
-        show_one_decimal(90,50,v2_true,12);
+        v2_sum += v2;
+        y++;
+        if(y >= 999){
+          v2 = v2_sum / 1000;
+          y = 0;
+          v2_sum = 0;
+          v2_true = (float)v2 * 4.0f / 4096.0f - 2.0f;
+          show_one_decimal(90,50,v2_true,12);
+        }
       }
     }
     osDelay(1);
