@@ -41,6 +41,10 @@ void OLED_Fill(unsigned char x1,
                unsigned char x2,
                unsigned char y2,
                unsigned char dot);
+void show_int(unsigned char x,
+              unsigned char y,
+              int value,
+              unsigned char size);
 
 #endif
 

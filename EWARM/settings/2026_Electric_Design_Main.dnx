@@ -13,7 +13,7 @@
         <MemConfigValue>D:\iar\arm\CONFIG\debugger\ST\STM32G474VE.ddf</MemConfigValue>
     </PlDriver>
     <DebugChecksum>
-        <Checksum>3720704372</Checksum>
+        <Checksum>1197033257</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>

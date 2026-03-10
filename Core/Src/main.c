@@ -132,6 +132,21 @@ int main(void)
 
   OLED_Clear();
   OLED_ColorTurn(1);
+  
+  
+  OLED_ShowChinese(0, 0, 35, 16);
+  OLED_ShowChinese(17, 0, 36, 16);
+  OLED_ShowChinese(34, 0, 37, 16);
+  OLED_ShowChinese(51, 0, 38, 16);
+  OLED_ShowChinese(68, 0, 39, 16);
+  OLED_Refresh_Gram();
+  OLED_ShowChinese(0, 40, 33, 16);
+  OLED_ShowChinese(17, 40, 34, 16);
+  show_int(38,40,25251116,16);
+  OLED_Refresh_Gram();
+  
+  HAL_Delay(2000);
+  OLED_Clear();
   Mode_show();
   
   HAL_GPIO_WritePin(GPIOE, GPIO_PIN_1,0);

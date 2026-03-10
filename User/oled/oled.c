@@ -422,6 +422,17 @@ void show_float(unsigned char x,
     OLED_ShowString(x, y, (unsigned char*)buffer, size);
     OLED_Refresh_Gram();
 }
+
+void show_int(unsigned char x,
+              unsigned char y,
+              int value,
+              unsigned char size)
+{
+    char buffer[20];
+    sprintf(buffer,"%d",value);
+    OLED_ShowString(x,y,(unsigned char*)buffer,size);
+    OLED_Refresh_Gram();
+}
 //
 //void show_data(int key){
 //  switch (key)
