@@ -54,6 +54,17 @@ extern uint32_t v2_sum;
 extern uint32_t v20;
 extern float v20_true;
 extern uint32_t v20_sum;
+
+extern uint32_t r;
+extern uint32_t r_sum;
+extern float r_true;
+
+extern float two_true;
+extern uint32_t two;
+extern uint32_t two_sum;
+
+extern uint32_t v20_AC[1000];
+extern uint32_t v2_AC[1000];
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/

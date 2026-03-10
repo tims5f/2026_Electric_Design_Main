@@ -28,6 +28,7 @@
 #include "user.h"
 #include "adc.h"
 #include "oled.h"
+#include "math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,6 +48,13 @@ KeyState_t key_state = KEY_IDLE;
 uint8_t current_key;
 uint32_t e = 0;
 uint32_t y = 0;
+uint32_t x = 0;
+uint32_t l =0;
+uint32_t g = 0;
+float Rk_table[4] = {100.0f, 1000.0f, 10000.0f, 100000.0f};
+uint64_t sum = 0;
+int32_t temp;
+double adc_rms;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -173,7 +181,7 @@ void Key_Scan(void const * argument)
               // 判断是否达到长按时间
               if(now - key_time >= LONG_PRESS_TIME)
               {
-                  if(mode == 5)
+                  if(mode == 4)
                   {
                     mode = 0;
                   }
@@ -254,35 +262,240 @@ void Data(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    if(mode == 1||mode == 2||mode == 5){
+    if(mode == 1||mode == 5){
       if(v_mode == 0){
         
         HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,1);//20V档
         HAL_ADC_Start_DMA(&hadc1, &v20, 1);//20V
         v20_sum += v20;
         e++;
-        if(e >= 999){
-          v20 = v20_sum / 1000;
+        if(e >= 1999){
+          OLED_Fill(60,50,92,63,0);  //清空区域
+          v20 = v20_sum / 2000;
           e = 0;
           v20_sum = 0;
           v20_true = (float)v20 * 40.0f / 4096.0f - 20.0f;
-          show_one_decimal(90,50,v20_true,12);
+          v20_true = v20_true + 0.25f;
+          if(v20_true > 19.99f){
+            v20_true = 19.99f;
+          }
+          if(v20_true < -19.99f){
+            v20_true = -19.99f;
+          }
+          show_float(60,50,v20_true,12, 2);
         }
       }
-      if(v_mode == 1){
+      else if(v_mode == 1){
         HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,0);//2V档
         HAL_ADC_Start_DMA(&hadc2, &v2, 1);//2V
         v2_sum += v2;
         y++;
-        if(y >= 999){
-          v2 = v2_sum / 1000;
+        if(y >= 1999){
+          OLED_Fill(60,50,92,63,0);  //清空区域
+          v2 = v2_sum / 2000;
           y = 0;
           v2_sum = 0;
           v2_true = (float)v2 * 4.0f / 4096.0f - 2.0f;
-          show_one_decimal(90,50,v2_true,12);
+          v2_true = v2_true + 0.02;
+          if(v2_true > 1.999f){
+            v2_true = 1.999f;
+          }
+          if(v2_true < -1.999f){
+            v2_true = -1.999f;
+          }
+          show_float(60,50,v2_true,12, 3);
         }
       }
     }
+    
+    
+    
+    if(mode == 3){        //r档
+      if(r_mode == 0){   //100
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_9,0);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_11,0);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13,0);
+      }
+      else if(r_mode == 1){   //1k
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_9,1);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_11,0);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13,0);
+      }
+      else if(r_mode == 2){   //10k
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_9,0);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_11,1);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13,0);
+      }
+      else if(r_mode == 3){   //100k
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_9,1);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_11,1);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13,0);
+      }
+      HAL_ADC_Start_DMA(&hadc3, &r, 1);
+      x++;
+      r_sum += r;
+      if(x >= 99){
+        OLED_Fill(60,50,92,63,0);  //清空区域
+        r = r_sum / 100;
+        x = 0;
+        r_sum = 0;
+        if(r >= 3800){
+          r = 3799.9999;
+        }
+        r_true = (float)Rk_table[r_mode] * (float)r / (3800.0f - (float)r);
+        if(r >= 3700){
+          r_true = 0;
+        }
+        if(r_mode == 0){   //100
+          if(r_true > 199.9){
+            r_true = 199.9;
+          }
+          show_float(60,50,r_true,12, 1);
+        }
+        else if(r_mode == 1){   //1k
+          r_true = r_true / 1000;
+          if(r_true > 1.999){
+            r_true = 1.999;
+          }
+          show_float(60,50,r_true,12, 3);
+        }
+        else if(r_mode == 2){   //10k
+          r_true = r_true / 1000;
+          if(r_true > 19.99){
+            r_true = 19.99;
+          }
+          show_float(60,50,r_true,12, 2);
+        }
+        else if(r_mode == 3){   //100k
+          r_true = r_true / 1000;
+          if(r_true > 199.9){
+            r_true = 199.9;
+          }
+          show_float(60,50,r_true,12, 1);
+        }
+      }  
+    }
+    
+    
+    
+    
+    if(mode == 4){      //蜂鸣档
+      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_9,0);
+      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_11,0);
+      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13,1);
+      HAL_ADC_Start_DMA(&hadc3, &r, 1);
+      x++;
+      r_sum += r;
+      if(x >= 99){
+        r = r_sum / 100;
+        x = 0;
+        r_sum = 0;
+        if(r >= 3800){
+          r = 3799.9999;
+        }
+        r_true = 10.0f * r / (3800.0f - r);
+        if(r_true < 10){
+          OLED_Fill(60,48,92,63,0);  //清空区域
+          OLED_ShowChinese(60, 48, 26, 16);
+          OLED_ShowChinese(77, 48, 27, 16);
+        }else{
+          OLED_Fill(60,48,92,63,0);  //清空区域
+          OLED_ShowChinese(60, 48, 29, 16);
+          OLED_ShowChinese(77, 48, 30, 16);
+        }
+        OLED_Refresh_Gram();
+      }
+    }
+    
+    
+    
+    if(mode == 0){      //二极管档
+      HAL_ADC_Start_DMA(&hadc4, &two, 1);
+        two_sum += two;
+        l++;
+        if(l >= 999){
+          OLED_Fill(60,50,92,63,0);  //清空区域
+          two = two_sum / 1000;
+          l = 0;
+          two_sum = 0;
+          two_true = (float)two * 3.3f / 4095.0f;
+          two_true = two_true * 1000;
+          if(two_true > 3100){
+            OLED_Fill(60,48,92,63,0);  //清空区域
+            OLED_ShowChinese(60, 48, 31, 16);
+            OLED_ShowChinese(77, 48, 32, 16);
+            OLED_Refresh_Gram();
+          }else{
+            OLED_Fill(60,48,92,63,0);  //清空区域
+            show_float(60,50,two_true,12, 0);
+          }
+        }
+    }
+    
+    if(mode == 2){
+      if(v_mode == 0){
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,1);//20V档
+        HAL_ADC_Start_DMA(&hadc1, &v20, 1);//20V
+        v20_AC[g] = v20;
+        if(g == 999){
+          g = 0;
+        sum = 0;
+        uint32_t f = 0;
+        for(int i = 0; i < 1000; i++){
+          temp = v20_AC[i] - 2000;   // 去直流偏置
+          sum += temp * temp;        // 平方
+          if(temp < 0){
+            f++;
+          }
+        }
+
+        adc_rms = sqrt((double)sum / 1000);
+        v20_true = (float)adc_rms * 40.0f / 4096.0f;
+        if(f>500){
+          v20_true = v20_true + 0.35f;
+        }else{
+          v20_true = v20_true - 0.25f;
+        }
+        show_float(60,50,v20_true,12, 2);
+        }else{
+          g++;
+        }
+      }
+      else if(v_mode == 1){
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,0);//2V档
+        HAL_ADC_Start_DMA(&hadc2, &v2, 1);//2V
+        v2_AC[g] = v2;
+        if(g == 999){
+          g = 0;
+        sum = 0;
+        uint32_t f = 0;
+        for(int i = 0; i < 1000; i++){
+          temp = v2_AC[i] - 2000;   // 去直流偏置
+          sum += temp * temp;        // 平方
+          if(temp < 0){
+            f++;
+          }
+        }
+        adc_rms = sqrt((double)sum / 1000);
+        v2_true = (float)adc_rms * 4.0f / 4096.0f;
+        if(f>500){
+          v2_true = v2_true - 0.035f;
+        }else{
+          v2_true = v2_true + 0.025f;
+        }
+        show_float(60,50,v2_true,12, 3);
+        }else{
+          g++;
+        }
+      }
+    }
+    
+    
+    
+    
+    
+    
+    
     osDelay(1);
   }
   /* USER CODE END Data */

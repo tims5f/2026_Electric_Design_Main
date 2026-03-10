@@ -61,4 +61,5 @@ C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\2026_Electric_Design_Main
   C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Core\Inc\adc.h \
   C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\Core\Inc\main.h \
   C:\Users\bjtuj\Desktop\2026_Electric_Design_Main\EWARM\..\User\oled\oled.h \
-  D:\iar\arm\inc\c\stdlib.h D:\iar\arm\inc\c\DLib_Product_stdlib.h
+  D:\iar\arm\inc\c\stdlib.h D:\iar\arm\inc\c\DLib_Product_stdlib.h \
+  D:\iar\arm\inc\c\math.h D:\iar\arm\inc\c\DLib_float_setup.h

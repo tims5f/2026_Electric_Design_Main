@@ -33,6 +33,8 @@ void Mode_show()
     OLED_ShowChinese(17, 0, 3, 16);
     OLED_ShowChinese(33, 0, 4, 16);
     OLED_ShowChinese(49, 0, 5, 16);
+    OLED_ShowChar(43,17,109,16,1);
+    OLED_ShowChar(52,17,86,16,1);
   }
 
   if(mode == 1)   //直流电压档20V，2V
@@ -56,8 +58,7 @@ void Mode_show()
       OLED_ShowChar(74,0,86,16,1);
       OLED_ShowChinese(83, 0, 5, 16);
 
-      OLED_ShowChar(43,17,109,16,1);
-      OLED_ShowChar(52,17,86,16,1);
+      OLED_ShowChar(43,17,86,16,1);
     }
   }
 
@@ -81,8 +82,7 @@ void Mode_show()
       OLED_ShowChar(74,0,86,16,1);
       OLED_ShowChinese(83, 0, 5, 16);
 
-      OLED_ShowChar(43,17,109,16,1);
-      OLED_ShowChar(52,17,86,16,1);
+      OLED_ShowChar(43,17,86,16,1);
     }
   }
 

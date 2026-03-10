@@ -59,7 +59,20 @@ uint32_t v20_sum = 0;
 float v2_true = 0;
 uint32_t v2 = 0;
 uint32_t v2_sum = 0;
+
 uint8_t start = 0;
+
+uint32_t r = 0;
+uint32_t r_sum = 0;
+float r_true = 0;
+
+float two_true = 0;
+uint32_t two = 0;
+uint32_t two_sum = 0;
+
+uint32_t v20_AC[1000] = {0};
+uint32_t v2_AC[1000] = {0};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -111,19 +124,20 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   
-  while(!start){
-    start = HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_1);
-  }
+  // while(!start){
+  //   start = HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_1);
+  // }
   
   OLED_Init();
 
   OLED_Clear();
   OLED_ColorTurn(1);
   Mode_show();
-
-
+  
+  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_1,0);
+  
   HAL_Delay(100);
-  //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,1); // 切换成20V档
+  // //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,1); // 切换成20V档
 
 
 
@@ -141,7 +155,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

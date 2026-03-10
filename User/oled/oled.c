@@ -142,7 +142,22 @@ void OLED_ClearPoint(unsigned char x,unsigned char y)
 	OLED_GRAM[x][i]=~OLED_GRAM[x][i];
 }
 
+void OLED_Fill(unsigned char x1,
+               unsigned char y1,
+               unsigned char x2,
+               unsigned char y2,
+               unsigned char dot)
+{
+    unsigned char x,y;
 
+    for(x = x1; x <= x2; x++)
+    {
+        for(y = y1; y <= y2; y++)
+        {
+            OLED_DrawPoint(x,y,dot);
+        }
+    }
+}
 
 
 
@@ -344,7 +359,7 @@ void OLED_Init(void)
 //  }
 //}
 
-
+/*
 void show_one_decimal(unsigned char x,
                       unsigned char y,
                       float value,
@@ -357,6 +372,52 @@ void show_one_decimal(unsigned char x,
     int decimal = abs(temp % 10);     // 小数部分取绝对值
 
     sprintf(buffer, "%d.%d", integer, decimal);
+
+    OLED_ShowString(x, y, (unsigned char*)buffer, size);
+    OLED_Refresh_Gram();
+}
+*/
+
+void show_float(unsigned char x,
+                unsigned char y,
+                float value,
+                unsigned char size,
+                unsigned char decimal_places)
+{
+    char buffer[20];
+    int multiplier = 1;
+
+    for(int i = 0; i < decimal_places; i++)
+    {
+        multiplier *= 10;
+    }
+
+    int sign = 0;
+    if(value < 0)
+    {
+        sign = 1;
+        value = -value;   // 取绝对值
+    }
+
+    int temp = (int)(value * multiplier + 0.5); // 四舍五入
+
+    int integer = temp / multiplier;
+    int decimal = temp % multiplier;
+
+    if(decimal_places == 0)
+    {
+        if(sign)
+            sprintf(buffer,"-%d",integer);
+        else
+            sprintf(buffer,"%d",integer);
+    }
+    else
+    {
+        if(sign)
+            sprintf(buffer,"-%d.%0*d",integer,decimal_places,decimal);
+        else
+            sprintf(buffer,"%d.%0*d",integer,decimal_places,decimal);
+    }
 
     OLED_ShowString(x, y, (unsigned char*)buffer, size);
     OLED_Refresh_Gram();

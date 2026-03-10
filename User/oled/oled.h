@@ -31,6 +31,16 @@ void OLED_Refresh_Gram(void);
 void OLED_Clear_area(void);
 void show_one_decimal(unsigned char x, unsigned char y,float value,  unsigned char size);
 void show_data(int key);
+void show_float(unsigned char x,
+                unsigned char y,
+                float value,
+                unsigned char size,
+                unsigned char decimal_places);
+void OLED_Fill(unsigned char x1,
+               unsigned char y1,
+               unsigned char x2,
+               unsigned char y2,
+               unsigned char dot);
 
 #endif
 
